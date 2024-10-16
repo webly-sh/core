@@ -1,6 +1,6 @@
 {
   "name": "@webly/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": "./main.ts",
   "license": "GPL-3.0",
   "vendor": true,

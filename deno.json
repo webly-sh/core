@@ -1,6 +1,21 @@
 {
-    "name": "@webly/core",
-    "version": "0.1.0",
-    "exports": "./main.ts",
-    "license": "GPL-3.0"
+  "name": "@webly/core",
+  "version": "0.1.0",
+  "exports": "./main.ts",
+  "license": "GPL-3.0",
+  "tasks": {
+    "start": "deno run --watch --allow-read --allow-write --allow-net --allow-env main.ts --debug"
+  },
+  "imports": {
+    "@std/cli": "jsr:@std/cli@^1.0.6",
+    "@std/path": "jsr:@std/path@^1.0.6",
+    "@types/react": "npm:@types/react@^18.3.11",
+    "@types/react-dom": "npm:@types/react-dom@^18.3.1",
+    "react": "npm:react@^18.3.1",
+    "react-dom": "npm:react-dom@^18.3.1"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

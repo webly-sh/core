@@ -1,6 +1,5 @@
-import { parseArgs } from "jsr:@std/cli/parse-args";
+import { parseArgs } from "@std/cli/parse-args";
 import { serve } from "./src/server/index.ts";
-import HelloWorld from "./pages/page.tsx";
 
 const main = async () => {
   console.log("Starting server...");

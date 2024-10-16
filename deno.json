@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "exports": "./main.ts",
   "license": "GPL-3.0",
+  "vendor": true,
   "tasks": {
     "start": "deno run --watch --allow-read --allow-write --allow-net --allow-env main.ts --debug"
   },

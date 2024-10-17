@@ -7,7 +7,6 @@ A simple website builder.
 </p>
 <hr/>
 
-[![CI](https://github.com/nhttp/nhttp/workflows/ci/badge.svg)](https://github.com/webly/core)
 [![JSR](https://jsr.io/badges/@webly/core)](https://jsr.io/@webly/core)
 [![JSR_SCORE](https://jsr.io/badges/@webly/core/score)](https://jsr.io/@webly/core/score)
 [![GPL-3](https://img.shields.io/:license-gpl-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)

@@ -15,7 +15,7 @@ const main = async () => {
     },
   });
 
-  const db = connect(args.db);
+  const db = await connect(args.db);
 
   const server = serve({
     port: Number(args.port),

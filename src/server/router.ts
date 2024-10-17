@@ -1,4 +1,5 @@
 import { renderToString } from "react-dom/server";
+import type { JSX } from "react";
 
 export const router = async (_req: Request): Promise<Response> => {
   const url = new URL(_req.url);

@@ -5,6 +5,7 @@
 <p align="center">
 A simple website builder (I hope).
 </p>
+<p align="center"><a href="https://webly.sh">webly.sh</a></p>
 <hr/>
 
 [![JSR](https://jsr.io/badges/@webly/core)](https://jsr.io/@webly/core)

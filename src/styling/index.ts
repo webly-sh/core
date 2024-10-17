@@ -13,6 +13,8 @@ export const compileTailwindCSS = async () => {
       "-o",
       tailwindOutputFile,
       "--minify",
+      "--content",
+      "./pages/**/*.{js,ts,jsx,tsx}",
     ],
   });
 

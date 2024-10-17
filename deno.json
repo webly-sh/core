@@ -1,7 +1,7 @@
 {
   "name": "@webly/core",
   "author": "Kevin Sundar Raj (@kevtechi)",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "exports": "./main.ts",
   "license": "GPL-3.0",
   "vendor": true,
@@ -26,6 +26,6 @@
   },
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "https://esm.sh/react@^18.3.1"
+    "jsxImportSource": "https://esm.sh/react@18.3.1"
   }
 }

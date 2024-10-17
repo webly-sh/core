@@ -19,7 +19,7 @@ export const router = async (_req: Request): Promise<Response> => {
       return response;
     }
     default: {
-      const response = await pageHandler(url);
+      const response = await pageHandler(_req);
       return response;
     }
   }
@@ -50,6 +50,7 @@ const fileHandler = async (url: URL): Promise<Response> => {
 };
 
 const apiHandler = async (_req: Request): Promise<Response> => {
+  const method = _req.method;
   const url = new URL(_req.url);
 
   let path = url.pathname;
@@ -60,7 +61,7 @@ const apiHandler = async (_req: Request): Promise<Response> => {
   const apiDir = `${Deno.cwd()}${path}`;
 
   try {
-    const module = await import(`${apiDir}get.ts`);
+    const module = await import(`${apiDir}${method.toLowerCase()}.ts`);
     return module.route(_req);
   } catch (error) {
     console.error(
@@ -72,14 +73,16 @@ const apiHandler = async (_req: Request): Promise<Response> => {
   }
 };
 
-const pageHandler = async (url: URL): Promise<Response> => {
+const pageHandler = async (_req: Request): Promise<Response> => {
+  const url = new URL(_req.url);
+
   let path = url.pathname;
   if (!path.endsWith("/")) {
     path += "/";
   }
 
   try {
-    const pageDir = `${Deno.cwd()}/pages${path}`;
+    let pageDir = `${Deno.cwd()}/pages${path}`;
 
     // Compile Tailwind CSS
     const tailwindFilePath = `/static/global.css`;
@@ -96,7 +99,11 @@ const pageHandler = async (url: URL): Promise<Response> => {
     }
 
     // Dynamically import the file
-    const module = await import(`${pageDir}/page.tsx`);
+    if (!pageDir.endsWith("/")) {
+      pageDir += "/";
+    }
+
+    const module = await import(`${pageDir}page.tsx`);
 
     // Access the default export
     const defaultExport = module.default;
@@ -115,10 +122,17 @@ const pageHandler = async (url: URL): Promise<Response> => {
 
     content += `<link href="${tailwindFilePath}" rel="stylesheet">`;
 
-    content +=
-      typeof defaultExport === "function"
-        ? renderToString(defaultExport())
-        : defaultExport;
+    if (typeof defaultExport === "string") {
+      content += defaultExport;
+    } else {
+      const response: Response | JSX.Element = defaultExport(_req);
+
+      if (response instanceof Response) {
+        return response;
+      }
+
+      content += renderToString(response);
+    }
 
     return new Response(content, {
       headers: {

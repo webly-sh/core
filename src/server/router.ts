@@ -14,6 +14,10 @@ export const router = async (_req: Request): Promise<Response> => {
       const response = await fileHandler(url);
       return response;
     }
+    case "static": {
+      const response = await fileHandler(url);
+      return response;
+    }
     default: {
       const response = await pageHandler(url);
       return response;
@@ -22,10 +26,7 @@ export const router = async (_req: Request): Promise<Response> => {
 };
 
 const fileHandler = async (url: URL): Promise<Response> => {
-  let path = url.pathname;
-  if (!path.endsWith("/")) {
-    path += "/";
-  }
+  const path = url.pathname;
 
   try {
     const fileDir = `${Deno.cwd()}${path}`;
@@ -72,11 +73,14 @@ const pageHandler = async (url: URL): Promise<Response> => {
   }
 
   try {
-    const cssFileContents: string[] = [];
-
     const pageDir = `${Deno.cwd()}/pages${path}`;
 
-    // find all css files in the page directory
+    // Compile Tailwind CSS
+    const tailwindFilePath = `${url.origin}/static/global.css`;
+
+    // Read page-specific CSS files
+    const cssFileContents: string[] = [];
+
     for await (const dirEntry of Deno.readDir(pageDir)) {
       if (dirEntry.name.endsWith(".css")) {
         cssFileContents.push(
@@ -102,6 +106,8 @@ const pageHandler = async (url: URL): Promise<Response> => {
     for (const css of cssFileContents) {
       content += `<style>${css}</style>`;
     }
+
+    content += `<link href="${tailwindFilePath}" rel="stylesheet">`;
 
     content +=
       typeof defaultExport === "function"

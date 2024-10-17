@@ -1,6 +1,7 @@
 import { parseArgs } from "@std/cli/parse-args";
 import { serve } from "./src/server/index.ts";
 import { connect } from "./src/db/index.ts";
+import { compileTailwindCSS } from "./src/styling/index.ts";
 
 const main = async () => {
   console.log("Starting server...");
@@ -16,6 +17,8 @@ const main = async () => {
   });
 
   const db = await connect(args.db);
+
+  await compileTailwindCSS();
 
   const server = await serve({
     port: Number(args.port),

@@ -32,21 +32,23 @@ The rough idea:
 - JWT for auth
 - JSR for self-updates
 
-# Up next
+# TODOs
 
-- [x] simple folder based router
-- [x] basic jsx support
-- [x] simple folder based api
-- [x] db
-- [ ] items
-- [ ] page that renders items
-- [ ] page that renders detail view of items
-- [ ] users
-- [ ] admin area to crud items
-- [ ] plugins
-- [ ] compile with dynamic imports
-- [ ] jsx page builder
-- [ ] client-side pages
-- [ ] self-update
+- simple folder based router ✅
+- basic jsx support ✅
+- tailwind ✅
+- raw css ✅
+- simple folder based api ✅
+- db ✅
+- items ⭕️
+- page that renders items ⭕️
+- page that renders detail view of items ⭕️
+- users ⭕️
+- admin area to crud items ⭕️
+- plugins ⭕️
+- compile with dynamic imports ⭕️
+- jsx page builder ⭕️
+- client-side pages ⭕️
+- self-update ⭕️
 
 PS: I'm sorry I used ChatGPT to generate the logo. If someone is a designer and wants to rework the logo, I'm happy to change it and give attribution.

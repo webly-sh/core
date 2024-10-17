@@ -1,6 +1,6 @@
 import { router } from "./router.ts";
 
-export const serve = ({
+export const serve = async ({
   port = 3000,
   hostname = "localhost",
   handler = router,
@@ -12,6 +12,18 @@ export const serve = ({
   debug?: boolean;
 }) => {
   const ac = new AbortController();
+
+  const uploadsDir = `${Deno.cwd()}/uploads`;
+
+  try {
+    await Deno.stat(uploadsDir);
+  } catch (error) {
+    if (error instanceof Deno.errors.NotFound) {
+      await Deno.mkdir(uploadsDir);
+
+      await Deno.copyFile("logo.png", `${uploadsDir}/logo.png`);
+    }
+  }
 
   const server = Deno.serve({
     port,

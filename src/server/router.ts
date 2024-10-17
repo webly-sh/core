@@ -10,10 +10,35 @@ export const router = async (_req: Request): Promise<Response> => {
       const response = await apiHandler(_req);
       return response;
     }
+    case "uploads": {
+      const response = await fileHandler(url);
+      return response;
+    }
     default: {
       const response = await pageHandler(url);
       return response;
     }
+  }
+};
+
+const fileHandler = async (url: URL): Promise<Response> => {
+  let path = url.pathname;
+  if (!path.endsWith("/")) {
+    path += "/";
+  }
+
+  try {
+    const fileDir = `${Deno.cwd()}${path}`;
+
+    const file = await Deno.readFile(fileDir);
+    return new Response(file);
+  } catch (error) {
+    console.error(
+      `Error loading file: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
+    return new Response("Not found", { status: 404 });
   }
 };
 

@@ -28,10 +28,11 @@ export const serve = async ({
     }
   }
 
-  let options:
+  let options: (
     | Deno.ServeTcpOptions
-    | ((Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem) &
-        Deno.ServeInit<Deno.NetAddr>) = {
+    | (Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem)
+  ) &
+    Deno.ServeInit<Deno.NetAddr> = {
     port,
     hostname,
     handler,
@@ -46,6 +47,7 @@ export const serve = async ({
     onListen({ port, hostname }) {
       if (debug) {
         console.log(`Server started at http://${hostname}:${port}`);
+        console.log(`HMR started at ws://${hostname}:${port}/_hmr`);
       }
     },
   };
@@ -56,24 +58,7 @@ export const serve = async ({
     };
   }
 
-  const server = Deno.serve({
-    port,
-    hostname,
-    handler,
-    signal: ac.signal,
-    onError(err) {
-      if (debug) {
-        console.error(err);
-      }
-
-      return new Response("Internal Server Error", { status: 500 });
-    },
-    onListen({ port, hostname }) {
-      if (debug) {
-        console.log(`Server started at http://${hostname}:${port}`);
-      }
-    },
-  });
+  const server = Deno.serve(options);
 
   const listener = () => {
     console.log("Interrupt received, shutting down...");

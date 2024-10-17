@@ -1,12 +1,12 @@
 {
   "name": "@webly/core",
   "author": "Kevin Sundar Raj (@kevtechi)",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "exports": "./main.ts",
   "license": "GPL-3.0",
   "vendor": true,
   "tasks": {
-    "start": "deno run --watch -A main.ts --debug",
+    "start": "deno run -A --watch --watch='pages' --watch='api' --watch-exclude='node_modules' --watch-exclude='data' --watch-exclude='uploads' --watch-exclude='static' main.ts --debug",
     "start:prod": "deno run -A main.ts",
     "start:prod:tls": "deno run -A main.ts --tls"
   },

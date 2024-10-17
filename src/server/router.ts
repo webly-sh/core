@@ -1,5 +1,6 @@
 import { renderToString } from "react-dom/server";
 import type { JSX } from "react";
+import { hmrHandler } from "../hmr/index.ts";
 
 export const router = async (_req: Request): Promise<Response> => {
   const url = new URL(_req.url);
@@ -17,6 +18,10 @@ export const router = async (_req: Request): Promise<Response> => {
     }
     case "static": {
       const response = await fileHandler(url);
+      return response;
+    }
+    case "_hmr": {
+      const response = await hmrHandler(_req);
       return response;
     }
     default: {
@@ -122,6 +127,10 @@ const pageHandler = async (_req: Request): Promise<Response> => {
     }
 
     content += `<link href="${tailwindFilePath}" rel="stylesheet">`;
+
+    const hmrCode = await Deno.readTextFile(`${Deno.cwd()}/src/hmr/index.html`);
+
+    content += hmrCode;
 
     if (typeof defaultExport === "string") {
       content += defaultExport;

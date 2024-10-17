@@ -8,11 +8,17 @@
     "jsr:@std/cli@*": "1.0.6",
     "jsr:@std/cli@^1.0.6": "1.0.6",
     "jsr:@std/encoding@0.221": "0.221.0",
+    "jsr:@std/encoding@^1.0.5": "1.0.5",
     "jsr:@std/fmt@0.221": "0.221.0",
+    "jsr:@std/fmt@^1.0.2": "1.0.2",
     "jsr:@std/fs@0.221": "0.221.0",
+    "jsr:@std/http@^1.0.8": "1.0.8",
+    "jsr:@std/media-types@^1.0.3": "1.0.3",
+    "jsr:@std/net@^1.0.4": "1.0.4",
     "jsr:@std/path@0.217": "0.217.0",
     "jsr:@std/path@0.221": "0.221.0",
     "jsr:@std/path@^1.0.6": "1.0.6",
+    "jsr:@std/streams@^1.0.7": "1.0.7",
     "npm:@types/react-dom@^18.3.1": "18.3.1",
     "npm:@types/react@^18.3.11": "18.3.11",
     "npm:autoprefixer@^10.4.20": "10.4.20_postcss@8.4.47",
@@ -35,8 +41,8 @@
     "@denosaurs/plug@1.0.6": {
       "integrity": "6cf5b9daba7799837b9ffbe89f3450510f588fafef8115ddab1ff0be9cb7c1a7",
       "dependencies": [
-        "jsr:@std/encoding",
-        "jsr:@std/fmt",
+        "jsr:@std/encoding@0.221",
+        "jsr:@std/fmt@0.221",
         "jsr:@std/fs",
         "jsr:@std/path@0.221"
       ]
@@ -53,8 +59,14 @@
     "@std/encoding@0.221.0": {
       "integrity": "d1dd76ef0dc5d14088411e6dc1dede53bf8308c95d1537df1214c97137208e45"
     },
+    "@std/encoding@1.0.5": {
+      "integrity": "ecf363d4fc25bd85bd915ff6733a7e79b67e0e7806334af15f4645c569fefc04"
+    },
     "@std/fmt@0.221.0": {
       "integrity": "379fed69bdd9731110f26b9085aeb740606b20428ce6af31ef6bd45ef8efa62a"
+    },
+    "@std/fmt@1.0.2": {
+      "integrity": "87e9dfcdd3ca7c066e0c3c657c1f987c82888eb8103a3a3baa62684ffeb0f7a7"
     },
     "@std/fs@0.221.0": {
       "integrity": "028044450299de8ed5a716ade4e6d524399f035513b85913794f4e81f07da286",
@@ -62,6 +74,24 @@
         "jsr:@std/assert@0.221",
         "jsr:@std/path@0.221"
       ]
+    },
+    "@std/http@1.0.8": {
+      "integrity": "6ea1b2e8d33929967754a3b6d6c6f399ad6647d7bbb5a466c1eaf9b294a6ebcd",
+      "dependencies": [
+        "jsr:@std/cli@^1.0.6",
+        "jsr:@std/encoding@^1.0.5",
+        "jsr:@std/fmt@^1.0.2",
+        "jsr:@std/media-types",
+        "jsr:@std/net",
+        "jsr:@std/path@^1.0.6",
+        "jsr:@std/streams"
+      ]
+    },
+    "@std/media-types@1.0.3": {
+      "integrity": "b12d30a7852f7578f4d210622df713bbfd1cbdd9b4ec2eaf5c1845ab70bab159"
+    },
+    "@std/net@1.0.4": {
+      "integrity": "2f403b455ebbccf83d8a027d29c5a9e3a2452fea39bb2da7f2c04af09c8bc852"
     },
     "@std/path@0.217.0": {
       "integrity": "1217cc25534bca9a2f672d7fe7c6f356e4027df400c0e85c0ef3e4343bc67d11",
@@ -77,6 +107,9 @@
     },
     "@std/path@1.0.6": {
       "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
+    },
+    "@std/streams@1.0.7": {
+      "integrity": "1a93917ca0c58c01b2bfb93647189229b1702677f169b6fb61ad6241cd2e499b"
     }
   },
   "npm": {
@@ -1112,6 +1145,7 @@
     }
   },
   "redirects": {
+    "https://deno.land/std/http/server.ts": "https://deno.land/std@0.224.0/http/server.ts",
     "https://deno.land/std/uuid/mod.ts": "https://deno.land/std@0.224.0/uuid/mod.ts",
     "https://deno.land/x/exec/mod.ts": "https://deno.land/x/exec@0.0.5/mod.ts",
     "https://esm.sh/react@^18.3.1/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
@@ -1120,10 +1154,12 @@
   "remote": {
     "https://deno.land/std@0.224.0/assert/assert.ts": "09d30564c09de846855b7b071e62b5974b001bb72a4b797958fe0660e7849834",
     "https://deno.land/std@0.224.0/assert/assertion_error.ts": "ba8752bd27ebc51f723702fac2f54d3e94447598f54264a6653d6413738a8917",
+    "https://deno.land/std@0.224.0/async/delay.ts": "f90dd685b97c2f142b8069082993e437b1602b8e2561134827eeb7c12b95c499",
     "https://deno.land/std@0.224.0/bytes/concat.ts": "86161274b5546a02bdb3154652418efe7af8c9310e8d54107a68aaa148e0f5ed",
     "https://deno.land/std@0.224.0/crypto/_wasm/lib/deno_std_wasm_crypto.generated.mjs": "7cd490ae1553c97459bd02de4c3f0a552768a85621949b2366003f3cf84b99d7",
     "https://deno.land/std@0.224.0/crypto/_wasm/mod.ts": "e89fbbc3c4722602ff975dd85f18273c7741ec766a9b68f6de4fd1d9876409f8",
     "https://deno.land/std@0.224.0/crypto/crypto.ts": "e58d78f3db111a499261dbab037ec78cc89da0516a50e1f0205665980a3417e3",
+    "https://deno.land/std@0.224.0/http/server.ts": "f9313804bf6467a1704f45f76cb6cd0a3396a3b31c316035e6a4c2035d1ea514",
     "https://deno.land/std@0.224.0/uuid/_common.ts": "05c787c5735776c4e48e30294878332c39cb7738f50b209df4eb9f2b0facce4d",
     "https://deno.land/std@0.224.0/uuid/constants.ts": "eb6c96871e968adf3355507d7ae79adce71525fd6c1ca55c51d32ace0196d64e",
     "https://deno.land/std@0.224.0/uuid/mod.ts": "cefc8e2f77d9e493739c8dc4ec141b12b855414bf757e778bf9b00f783506b76",
@@ -1140,6 +1176,7 @@
     "dependencies": [
       "jsr:@db/sqlite@0.12",
       "jsr:@std/cli@^1.0.6",
+      "jsr:@std/http@^1.0.8",
       "jsr:@std/path@^1.0.6",
       "npm:@types/react-dom@^18.3.1",
       "npm:@types/react@^18.3.11",

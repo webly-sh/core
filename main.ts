@@ -8,11 +8,12 @@ const main = async () => {
 
   const args = parseArgs(Deno.args, {
     string: ["port", "hostname", "db"],
-    boolean: ["debug"],
+    boolean: ["debug", "tls"],
     default: {
       port: 3000,
       hostname: "localhost",
       db: "webly.db",
+      tls: false,
     },
   });
 
@@ -21,7 +22,7 @@ const main = async () => {
   await compileTailwindCSS();
 
   const server = await serve({
-    port: Number(args.port),
+    port: args.tls ? 443 : Number(args.port),
     hostname: args.hostname,
     debug: args.debug,
   });

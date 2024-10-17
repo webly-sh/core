@@ -21,7 +21,7 @@ const pageHandler = async (url: URL): Promise<Response> => {
   }
 
   try {
-    let cssFileContents: string[] = [];
+    const cssFileContents: string[] = [];
 
     // find all css files in the page directory
     for await (const dirEntry of Deno.readDir(`${Deno.cwd()}/pages${path}`)) {

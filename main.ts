@@ -1,17 +1,21 @@
 import { parseArgs } from "@std/cli/parse-args";
 import { serve } from "./src/server/index.ts";
+import { connect } from "./src/db/index.ts";
 
 const main = async () => {
   console.log("Starting server...");
 
   const args = parseArgs(Deno.args, {
-    string: ["port", "hostname"],
+    string: ["port", "hostname", "db"],
     boolean: ["debug"],
     default: {
       port: 3000,
       hostname: "localhost",
+      db: "webly.db",
     },
   });
+
+  const db = connect(args.db);
 
   const server = serve({
     port: Number(args.port),
@@ -22,6 +26,7 @@ const main = async () => {
   // Add SIGINT listener
   Deno.addSignalListener("SIGINT", () => {
     server.shutdown();
+    db.close();
   });
 
   await server.finished;

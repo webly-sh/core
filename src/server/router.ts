@@ -32,7 +32,13 @@ const fileHandler = async (url: URL): Promise<Response> => {
     const fileDir = `${Deno.cwd()}${path}`;
 
     const file = await Deno.readFile(fileDir);
-    return new Response(file);
+    const response = new Response(file);
+
+    // Cache the file
+    const cacheControl = "public, max-age=3600"; // Cache for 1 hour
+    response.headers.set("Cache-Control", cacheControl);
+
+    return response;
   } catch (error) {
     console.error(
       `Error loading file: ${

@@ -82,7 +82,7 @@ const pageHandler = async (url: URL): Promise<Response> => {
     const pageDir = `${Deno.cwd()}/pages${path}`;
 
     // Compile Tailwind CSS
-    const tailwindFilePath = `${url.origin}/static/global.css`;
+    const tailwindFilePath = `/static/global.css`;
 
     // Read page-specific CSS files
     const cssFileContents: string[] = [];

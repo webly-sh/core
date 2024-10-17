@@ -33,6 +33,15 @@ The rough idea:
 - JWT for auth
 - JSR for self-updates
 
+# Run
+
+Run the dev server
+```
+deno install
+
+deno task start
+```
+
 # TODOs
 
 - simple folder based router ✅

@@ -50,6 +50,7 @@ deno task start
 - raw css ✅
 - simple folder based api ✅
 - db ✅
+- hmr ✅
 - items ⭕️
 - page that renders items ⭕️
 - page that renders detail view of items ⭕️

@@ -1,4 +1,4 @@
-import { router } from "./router.ts";
+import { router } from "./router.tsx";
 import { getOptions } from "./tls.ts";
 
 export const serve = async ({

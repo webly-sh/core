@@ -109,18 +109,6 @@ const pageHandler = async (_req: Request): Promise<Response> => {
       pageDir += "/";
     }
 
-    const module = await import(`${pageDir}page.tsx`);
-
-    // Access the default export
-    const defaultExport = module.default;
-
-    if (
-      typeof defaultExport !== "function" &&
-      typeof defaultExport !== "string"
-    ) {
-      throw new Error("Invalid export type");
-    }
-
     let content = "";
     for (const css of cssFileContents) {
       content += `<style>${css}</style>`;
@@ -132,6 +120,17 @@ const pageHandler = async (_req: Request): Promise<Response> => {
 
     content += hmrCode;
 
+    // load page
+    const module = await import(`${pageDir}page.tsx`);
+    const defaultExport = module.default;
+
+    if (
+      typeof defaultExport !== "function" &&
+      typeof defaultExport !== "string"
+    ) {
+      throw new Error("Invalid export type");
+    }
+
     if (typeof defaultExport === "string") {
       content += defaultExport;
     } else {
@@ -141,7 +140,40 @@ const pageHandler = async (_req: Request): Promise<Response> => {
         return response;
       }
 
-      content += renderToString(response);
+      // Load layouts
+      const layouts: JSX.Element[] = [];
+      let currentDir = pageDir;
+      const pagesDir = `${Deno.cwd()}/pages`;
+
+      const currentDirSegments = currentDir.split("/");
+      const pagesDirSegments = pagesDir.split("/");
+      const includedLayouts: string[] = [];
+
+      while (currentDirSegments.length >= pagesDirSegments.length) {
+        try {
+          const layoutPath = currentDir.endsWith("/")
+            ? `${currentDir}layout.tsx`
+            : `${currentDir}/layout.tsx`;
+
+          if (includedLayouts.includes(layoutPath)) {
+            throw new Error("Layout already included");
+          }
+
+          await Deno.stat(layoutPath);
+          const layoutModule = await import(layoutPath);
+          layouts.unshift(layoutModule.default); // Add to the beginning of the array
+          includedLayouts.push(layoutPath);
+        } catch (_) {
+          // No layout in this directory, continue
+        }
+        // Move up one directory
+        currentDirSegments.pop();
+        currentDir = currentDirSegments.join("/");
+      }
+
+      content += renderToString(
+        layouts.length > 0 ? renderLayout(layouts, response) : response
+      );
     }
 
     return new Response(content, {
@@ -157,4 +189,19 @@ const pageHandler = async (_req: Request): Promise<Response> => {
     );
     return new Response("Not found", { status: 404 });
   }
+};
+
+const renderLayout = (layouts: JSX.Element[], response: JSX.Element) => {
+  if (layouts.length === 1) {
+    const Layout = layouts[0];
+    return <Layout>{response}</Layout>;
+  }
+
+  const [Layout, ...rest] = layouts;
+
+  if (rest.length === 0) {
+    return <Layout>{response}</Layout>;
+  }
+
+  return <Layout>{renderLayout(rest, response)}</Layout>;
 };

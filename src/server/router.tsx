@@ -1,5 +1,5 @@
-import { renderToString } from "react-dom/server";
-import type { JSX } from "react";
+import { renderToString } from "npm:react-dom@^18.3.1/server";
+import type { JSX } from "npm:react@^18.3.1";
 import { hmrHandler } from "../hmr/index.ts";
 
 export const router = async (_req: Request): Promise<Response> => {

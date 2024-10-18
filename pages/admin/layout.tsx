@@ -1,12 +1,4 @@
-import {
-  Edit3,
-  FileText,
-  Home,
-  MessageSquare,
-  Settings,
-  Users,
-  Blocks,
-} from "lucide-react";
+import { List, FileText, Home, Settings, Users, Blocks } from "lucide-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,11 +17,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Dashboard
           </a>
           <a
-            href="/admin/posts"
+            href="/admin/lists"
             className="block py-2 px-4 hover:bg-gray-800 flex items-center"
           >
-            <Edit3 className="mr-2 h-5 w-5" />
-            Posts
+            <List className="mr-2 h-5 w-5" />
+            Lists
           </a>
           <a
             href="/admin/pages"
@@ -37,13 +29,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           >
             <FileText className="mr-2 h-5 w-5" />
             Pages
-          </a>
-          <a
-            href="/admin/comments"
-            className="block py-2 px-4 hover:bg-gray-800 flex items-center"
-          >
-            <MessageSquare className="mr-2 h-5 w-5" />
-            Comments
           </a>
           <a
             href="/admin/users"

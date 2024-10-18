@@ -134,7 +134,7 @@ const pageHandler = async (_req: Request): Promise<Response> => {
     if (typeof defaultExport === "string") {
       content += defaultExport;
     } else {
-      const response: Response | JSX.Element = defaultExport(_req);
+      const response: Response | JSX.Element = await defaultExport(_req);
 
       if (response instanceof Response) {
         return response;

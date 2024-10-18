@@ -1,6 +1,6 @@
 import { parseArgs } from "@std/cli/parse-args";
 import { serve } from "./src/server/index.ts";
-import { connect } from "./src/db/index.ts";
+import { db } from "./src/db/index.ts";
 import { compileTailwindCSS } from "./src/styling/index.ts";
 import { hmrClient } from "./src/hmr/index.ts";
 
@@ -24,7 +24,7 @@ const main = async () => {
     watch();
   }
 
-  const db = await connect(args.db);
+  await db.connect(args.db);
 
   await compileTailwindCSS();
 

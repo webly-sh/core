@@ -1,16 +1,15 @@
-import { router } from "./router.tsx";
-import { getOptions } from "./tls.ts";
+import { getOptions } from "@/server/tls.ts";
 
 export const serve = async ({
   port = 3000,
   hostname = "localhost",
-  handler = router,
+  handler,
   certbotDir = "/etc/letsencrypt",
   debug = false,
 }: {
   port: number;
   hostname: string;
-  handler?: (req: Request) => Promise<Response>;
+  handler: (req: Request) => Promise<Response>;
   certbotDir?: string;
   debug?: boolean;
 }) => {

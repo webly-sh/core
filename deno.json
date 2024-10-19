@@ -1,7 +1,7 @@
 {
   "name": "@webly/core",
   "author": "Kevin Sundar Raj (@kevtechi)",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "exports": "./main.ts",
   "license": "GPL-3.0",
   "vendor": true,
@@ -11,12 +11,14 @@
     "start:prod:tls": "deno run -A main.ts --tls"
   },
   "imports": {
+    "@/": "./src/",
     "@db/sqlite": "jsr:@db/sqlite@^0.12.0",
     "@std/cli": "jsr:@std/cli@^1.0.6",
     "@std/http": "jsr:@std/http@^1.0.8",
     "@std/path": "jsr:@std/path@^1.0.6",
     "@types/react": "npm:@types/react@^18.3.11",
     "@types/react-dom": "npm:@types/react-dom@^18.3.1",
+    "@webly/router": "jsr:@webly/router@^0.1.15",
     "autoprefixer": "npm:autoprefixer@^10.4.20",
     "cssnano": "npm:cssnano@^7.0.6",
     "lucide-react": "npm:lucide-react@^0.453.0",

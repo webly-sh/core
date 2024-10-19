@@ -1,5 +1,5 @@
 import { Pencil, Trash2, Users, Plus } from "lucide-react";
-import { redirect } from "../../../src/pages/index.ts";
+import { redirect } from "@webly/router";
 
 interface User {
   id: number;

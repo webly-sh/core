@@ -1,5 +1,5 @@
 import type { Database } from "@db/sqlite";
-import type { JSRPackageDetails } from "../services/jsr/index.ts";
+import type { JSRPackageDetails } from "@/services/jsr/index.ts";
 
 export type Plugin = {
   id: number;

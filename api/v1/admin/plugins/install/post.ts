@@ -1,6 +1,6 @@
 import { db } from "../../../../../src/db/index.ts";
 import { installJSRPlugin } from "../../../../../src/db/plugins.ts";
-import { redirect } from "../../../../../src/pages/index.ts";
+import { redirect } from "@webly/router";
 import { getJSRPackageDetails } from "../../../../../src/services/jsr/index.ts";
 
 export const route = async (req: Request): Promise<Response> => {

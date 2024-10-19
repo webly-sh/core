@@ -1,6 +1,6 @@
 import { Blocks, Plus } from "lucide-react";
-import { getPlugins, type Plugin } from "../../../src/db/plugins.ts";
-import { db } from "../../../src/db/index.ts";
+import { getPlugins, type Plugin } from "@/db/plugins.ts";
+import { db } from "@/db/index.ts";
 
 export default function Page() {
   const plugins: Plugin[] = getPlugins(db.db);

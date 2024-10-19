@@ -1,8 +1,8 @@
 import { parseArgs } from "@std/cli/parse-args";
-import { serve } from "./src/server/index.ts";
-import { db } from "./src/db/index.ts";
-import { compileTailwindCSS } from "./src/styling/index.ts";
-import { hmrClient } from "./src/hmr/index.ts";
+import { createRequestHandler, hmrClient } from "@webly/router";
+import { serve } from "@/server/index.ts";
+import { db } from "@/db/index.ts";
+import { compileTailwindCSS } from "@/styling/index.ts";
 
 let watcher: Deno.FsWatcher | undefined;
 
@@ -21,6 +21,7 @@ const main = async () => {
   });
 
   if (args.debug) {
+    Deno.env.set("DEBUG", "true");
     watch();
   }
 
@@ -28,9 +29,12 @@ const main = async () => {
 
   await compileTailwindCSS();
 
+  const requestHandler = createRequestHandler({ basePath: Deno.cwd() });
+
   const server = await serve({
     port: args.tls ? 443 : Number(args.port),
     hostname: args.hostname,
+    handler: requestHandler,
     debug: args.debug,
   });
 

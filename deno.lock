@@ -19,6 +19,7 @@
     "jsr:@std/path@0.221": "0.221.0",
     "jsr:@std/path@^1.0.6": "1.0.6",
     "jsr:@std/streams@^1.0.7": "1.0.7",
+    "jsr:@webly/router@~0.1.15": "0.1.15",
     "npm:@types/react-dom@^18.3.1": "18.3.1",
     "npm:@types/react@^18.3.11": "18.3.11",
     "npm:autoprefixer@^10.4.20": "10.4.20_postcss@8.4.47",
@@ -113,6 +114,20 @@
     },
     "@std/streams@1.0.7": {
       "integrity": "1a93917ca0c58c01b2bfb93647189229b1702677f169b6fb61ad6241cd2e499b"
+    },
+    "@webly/router@0.1.2": {
+      "integrity": "1a2e51d5f5ce1e68e28596204703a4f8f36b44b5c91924747078f7e673d71887",
+      "dependencies": [
+        "npm:react-dom@^18.3.1",
+        "npm:react@^18.3.1"
+      ]
+    },
+    "@webly/router@0.1.15": {
+      "integrity": "a6a00cb4b2ca03e617b12edf75c577db151514ead0cde45f42b9ba696c232098",
+      "dependencies": [
+        "npm:react-dom@^18.3.1",
+        "npm:react@^18.3.1"
+      ]
     }
   },
   "npm": {
@@ -1187,6 +1202,7 @@
       "jsr:@std/cli@^1.0.6",
       "jsr:@std/http@^1.0.8",
       "jsr:@std/path@^1.0.6",
+      "jsr:@webly/router@~0.1.15",
       "npm:@types/react-dom@^18.3.1",
       "npm:@types/react@^18.3.11",
       "npm:autoprefixer@^10.4.20",

@@ -1,7 +1,4 @@
-import {
-  type JSRPackageDetails,
-  searchJSR,
-} from "../../../../src/services/jsr/index.ts";
+import { type JSRPackageDetails, searchJSR } from "@/services/jsr/index.ts";
 import { Blocks } from "lucide-react";
 
 export default async function Page(req: Request) {

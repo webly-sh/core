@@ -1,5 +1,5 @@
 import { BarChart2, Grid, Home } from "lucide-react";
-import { redirect } from "../../src/pages/index.ts";
+import { redirect } from "@webly/router";
 
 function Page(_req?: Request) {
   // const auth = _req?.headers.get("Authorization");

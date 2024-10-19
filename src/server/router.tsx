@@ -1,4 +1,4 @@
-import { renderToString } from "react-dom";
+import { renderToString } from "react-dom/server";
 import type { JSX } from "react";
 import { hmrHandler } from "../hmr/index.ts";
 

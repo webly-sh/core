@@ -1,9 +1,9 @@
 import { Database } from "@db/sqlite";
 import {
-  createPluginsTable,
-  migratePluginsTable,
-  pluginTableExists,
-} from "./plugins.ts";
+  createModulesTable,
+  migrateModulesTable,
+  moduleTableExists,
+} from "./modules.ts";
 
 export class DB {
   private _db?: Database;
@@ -42,16 +42,16 @@ export class DB {
 
     this._db = new Database(`${dataDir}/${path}`);
 
-    if (!pluginTableExists(this._db)) {
-      console.log("Plugins table does not exist, creating...");
-      await createPluginsTable(this._db);
+    if (!moduleTableExists(this._db)) {
+      console.log("Modules table does not exist, creating...");
+      await createModulesTable(this._db);
     }
 
     if (currentVersion < this.version) {
       console.log(
         `Updating database from ${currentVersion} to ${this.version}`
       );
-      await migratePluginsTable(this._db, currentVersion, this.version);
+      await migrateModulesTable(this._db, currentVersion, this.version);
     }
 
     return this._db;

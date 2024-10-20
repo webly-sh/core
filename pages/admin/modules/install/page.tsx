@@ -1,12 +1,12 @@
-import { type JSRPackageDetails, searchJSR } from "@/services/jsr/index.ts";
+import { type JSRModuleDetails, searchJSR } from "@/services/jsr/index.ts";
 import { Blocks } from "lucide-react";
 
 export default async function Page(req: Request) {
   const query = new URL(req.url).searchParams.get("query");
 
-  let plugins: JSRPackageDetails[] = [];
+  let modules: JSRModuleDetails[] = [];
   if (query) {
-    plugins = await searchJSR(query);
+    modules = await searchJSR(query);
   }
 
   return (
@@ -46,36 +46,37 @@ export default async function Page(req: Request) {
         )}
 
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          {plugins.length > 0 ? (
+          {modules.length > 0 ? (
             <ul className="divide-y divide-gray-200">
-              {plugins.map((plugin, index) => (
+              {modules.map((module, index) => (
                 <li key={index} className="p-4 hover:bg-gray-50">
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col flex-1">
                       <h2 className="text-lg font-semibold text-gray-900">
-                        {plugin.name}
+                        {module.scope ? `@${module.scope}/` : ""}
+                        {module.name}
                       </h2>
                       <p className="text-sm text-gray-500">
-                        {plugin.description}
+                        {module.description}
                       </p>
                     </div>
                     <div className="mr-4">
                       <p className="text-sm font-medium text-gray-900">
-                        Latest: {plugin.latestVersion}
+                        Latest: {module.latestVersion}
                       </p>
                     </div>
                     <div className="flex flex-col justify-center items-center">
                       <form
-                        action="/api/v1/admin/plugins/install"
+                        action="/api/v1/admin/modules"
                         method="POST"
                         className="m-0"
                       >
                         <input
                           type="hidden"
                           name="scope"
-                          value={plugin.scope}
+                          value={module.scope}
                         />
-                        <input type="hidden" name="name" value={plugin.name} />
+                        <input type="hidden" name="name" value={module.name} />
                         <button
                           type="submit"
                           className="text-sm text-blue-600 hover:text-blue-800"

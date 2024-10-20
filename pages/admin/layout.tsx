@@ -38,11 +38,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Users
           </a>
           <a
-            href="/admin/plugins"
+            href="/admin/modules"
             className="block py-2 px-4 hover:bg-gray-800 flex items-center"
           >
             <Blocks className="mr-2 h-5 w-5" />
-            Plugins
+            Modules
           </a>
           <a
             href="/admin/settings"

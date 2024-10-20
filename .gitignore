@@ -1,7 +1,12 @@
+
 node_modules
 vendor
 data
 uploads
 static
+tmp
+pages/admin/pages/editor
+
+
 
 .DS_Store

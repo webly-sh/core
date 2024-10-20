@@ -3,6 +3,7 @@ import { createRequestHandler, hmrClient } from "@webly/router";
 import { serve } from "@/server/index.ts";
 import { db } from "@/db/index.ts";
 import { compileTailwindCSS } from "@/styling/index.ts";
+import { setupEditor } from "@/editor/index.ts";
 
 let watcher: Deno.FsWatcher | undefined;
 
@@ -28,6 +29,10 @@ const main = async () => {
   await db.connect(args.db);
 
   await compileTailwindCSS();
+
+  if (!args.debug) {
+    await setupEditor();
+  }
 
   const requestHandler = createRequestHandler({ basePath: Deno.cwd() });
 

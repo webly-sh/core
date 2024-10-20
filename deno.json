@@ -1,12 +1,13 @@
 {
   "name": "@webly/core",
   "author": "Kevin Sundar Raj (@kevtechi)",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "exports": "./main.ts",
   "license": "GPL-3.0",
   "vendor": true,
   "tasks": {
-    "start": "deno run -A --watch --watch='pages' --watch='api' --watch-exclude='node_modules' --watch-exclude='data' --watch-exclude='uploads' --watch-exclude='static' main.ts --debug",
+    "setup": "deno run -A setup.ts",
+    "start": "deno run -A setup.ts && deno run -A --watch --watch='pages' --watch='api' --watch-exclude='node_modules' --watch-exclude='data' --watch-exclude='uploads' --watch-exclude='static' --watch-exclude='tmp' --watch-exclude='pages/admin/pages/editor' --watch-exclude='deno.lock' --watch-exclude='deno.json' main.ts --debug",
     "start:prod": "deno run -A main.ts",
     "start:prod:tls": "deno run -A main.ts --tls"
   },
@@ -16,8 +17,10 @@
     "@std/cli": "jsr:@std/cli@^1.0.6",
     "@std/http": "jsr:@std/http@^1.0.8",
     "@std/path": "jsr:@std/path@^1.0.6",
+    "@std/tar": "jsr:@std/tar@^0.1.2",
     "@types/react": "npm:@types/react@^18.3.1",
     "@types/react-dom": "npm:@types/react-dom@^18.3.1",
+    "@webly/editor": "jsr:@webly/editor@^0.1.4",
     "@webly/router": "jsr:@webly/router@^0.1.17",
     "autoprefixer": "npm:autoprefixer@^10.4.20",
     "cssnano": "npm:cssnano@^7.0.6",

@@ -7,7 +7,7 @@ export type JSRPlugin = {
   };
 };
 
-export type JSRPackageDetails = {
+export type JSRModuleDetails = {
   scope: string;
   name: string;
   description: string;
@@ -32,27 +32,25 @@ export type JSRPackageDetails = {
 };
 
 type JSRResponse = {
-  items: JSRPackageDetails[];
+  items: JSRModuleDetails[];
   total: number;
 };
 
-export const searchJSR = async (
-  query: string
-): Promise<JSRPackageDetails[]> => {
+export const searchJSR = async (query: string): Promise<JSRModuleDetails[]> => {
   const response = await fetch(
     `https://api.jsr.io/packages?query=${query}&limit=10`
   );
   const data: JSRResponse = await response.json();
-  return data.items as JSRPackageDetails[];
+  return data.items as JSRModuleDetails[];
 };
 
-export const getJSRPackageDetails = async (
+export const getJSRModuleDetails = async (
   scope: string,
   packageName: string
-): Promise<JSRPackageDetails> => {
+): Promise<JSRModuleDetails> => {
   const response = await fetch(
     `https://api.jsr.io/scopes/${scope}/packages/${packageName}`
   );
-  const data: JSRPackageDetails = await response.json();
+  const data: JSRModuleDetails = await response.json();
   return data;
 };

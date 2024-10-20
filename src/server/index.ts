@@ -1,5 +1,9 @@
 import { getOptions } from "@/server/tls.ts";
 
+export const restartServer = () => {
+  // TODO: Implement
+};
+
 export const serve = async ({
   port = 3000,
   hostname = "localhost",

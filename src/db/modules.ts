@@ -1,7 +1,7 @@
 import type { Database } from "@db/sqlite";
-import type { JSRPackageDetails } from "@/services/jsr/index.ts";
+import type { JSRModuleDetails } from "@/services/jsr/index.ts";
 
-export type Plugin = {
+export type Module = {
   id: number;
   registry: string;
   scope: string;
@@ -11,9 +11,9 @@ export type Plugin = {
   updated_at: string;
 };
 
-export const createPluginsTable = (db: Database) => {
+export const createModulesTable = (db: Database) => {
   db.exec(
-    `CREATE TABLE IF NOT EXISTS plugins (
+    `CREATE TABLE IF NOT EXISTS modules (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       registry TEXT NOT NULL,
       scope TEXT NOT NULL,
@@ -25,19 +25,19 @@ export const createPluginsTable = (db: Database) => {
   );
 
   db.exec(
-    `CREATE INDEX IF NOT EXISTS idx_plugins_scope_name ON plugins (scope, name)`
+    `CREATE INDEX IF NOT EXISTS idx_modules_scope_name ON modules (scope, name)`
   );
 };
 
-export const pluginTableExists = (db: Database) => {
+export const moduleTableExists = (db: Database) => {
   const stmt = db.prepare(
-    "SELECT name FROM sqlite_master WHERE type='table' AND name='plugins'"
+    "SELECT name FROM sqlite_master WHERE type='table' AND name='modules'"
   );
   const result = stmt.get();
   return result !== undefined;
 };
 
-export const migratePluginsTable = async (
+export const migrateModulesTable = async (
   db: Database,
   currentVersion: number,
   targetVersion: number
@@ -55,14 +55,14 @@ export const migratePluginsTable = async (
   }
 };
 
-export const getPlugins = (db: Database): Plugin[] => {
-  const stmt = db.prepare("SELECT * FROM plugins");
+export const getModules = (db: Database): Module[] => {
+  const stmt = db.prepare("SELECT * FROM modules");
   return stmt.all();
 };
 
-export const installJSRPlugin = (db: Database, plugin: JSRPackageDetails) => {
+export const installJSRModule = (db: Database, module: JSRModuleDetails) => {
   const stmt = db.prepare(
-    "INSERT INTO plugins (registry, scope, name, version) VALUES (?, ?, ?, ?)"
+    "INSERT INTO modules (registry, scope, name, version) VALUES (?, ?, ?, ?)"
   );
-  stmt.run("jsr", plugin.scope, plugin.name, plugin.latestVersion);
+  stmt.run("jsr", module.scope, module.name, module.latestVersion);
 };

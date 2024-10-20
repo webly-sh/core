@@ -5,7 +5,9 @@ import { downloadModuleDist } from "@/modules/index.ts";
 export const setupEditor = async () => {
   // check if editor is installed
   if (await fileExists(`${Deno.cwd()}/pages/admin/pages/editor/index.html`)) {
-    return;
+    await Deno.remove(`${Deno.cwd()}/pages/admin/pages/editor`, {
+      recursive: true,
+    });
   }
 
   try {

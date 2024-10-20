@@ -109,7 +109,7 @@ export const downloadModuleDist = async (
 
   try {
     // Download the file
-    const response = await fetch(downloadUrl);
+    const response = await fetch(downloadUrl, { cache: "no-store" });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

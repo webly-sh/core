@@ -20,8 +20,8 @@
     "jsr:@std/path@^1.0.6": "1.0.6",
     "jsr:@std/streams@^1.0.7": "1.0.7",
     "jsr:@std/tar@~0.1.2": "0.1.2",
-    "jsr:@webly/editor@~0.1.4": "0.1.4",
-    "jsr:@webly/router@~0.1.17": "0.1.17",
+    "jsr:@webly/editor@~0.1.6": "0.1.6",
+    "jsr:@webly/router@~0.1.18": "0.1.18",
     "npm:@types/react-dom@^18.3.1": "18.3.1",
     "npm:@types/react@^18.3.1": "18.3.11",
     "npm:@types/react@^18.3.11": "18.3.11",
@@ -127,8 +127,8 @@
     "@webly/editor@0.1.2": {
       "integrity": "872d0e699fa6f2f87c35ffbc71895dc574a617182cfeaac27b0dcc076c4feb44"
     },
-    "@webly/editor@0.1.4": {
-      "integrity": "a52c0a0213f3993981cd70e2f0b6ee76fbb200fca089ddb3d1bcf14569d80ad5"
+    "@webly/editor@0.1.6": {
+      "integrity": "a5dd0df5aa918dedebd876209df715c575cafbea455f20715010875776192941"
     },
     "@webly/router@0.1.2": {
       "integrity": "1a2e51d5f5ce1e68e28596204703a4f8f36b44b5c91924747078f7e673d71887",
@@ -137,9 +137,10 @@
         "npm:react@^18.3.1"
       ]
     },
-    "@webly/router@0.1.17": {
-      "integrity": "1d9efe0e4eb46d61e3a352067a12e9889f94d06c0ed64e88b88e2fe696b5a6ec",
+    "@webly/router@0.1.18": {
+      "integrity": "796a550cf4a555f451f8cc95c3961236dff2bfb504f232d946d9307970875e9e",
       "dependencies": [
+        "jsr:@std/media-types",
         "npm:react-dom@18.3.1",
         "npm:react@^18.3.1"
       ]
@@ -1218,8 +1219,8 @@
       "jsr:@std/http@^1.0.8",
       "jsr:@std/path@^1.0.6",
       "jsr:@std/tar@~0.1.2",
-      "jsr:@webly/editor@~0.1.4",
-      "jsr:@webly/router@~0.1.17",
+      "jsr:@webly/editor@~0.1.6",
+      "jsr:@webly/router@~0.1.18",
       "npm:@types/react-dom@^18.3.1",
       "npm:@types/react@^18.3.1",
       "npm:autoprefixer@^10.4.20",

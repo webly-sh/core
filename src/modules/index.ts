@@ -105,8 +105,6 @@ export const downloadModuleDist = async (
   // Construct the GitHub download URL
   const downloadUrl = `${weblyModule.repository}/raw/main/${fileName}`;
 
-  console.log(downloadUrl);
-
   try {
     // Download the file
     const response = await fetch(downloadUrl, { cache: "no-store" });
